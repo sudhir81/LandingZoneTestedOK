@@ -66,7 +66,7 @@ variable "law_retention_days" {
 variable "central_storage_account_name" {
   description = "Globally unique storage account name (3-24 lowercase letters/numbers)"
   type        = string
-  default     = "jumbopreprod14598"
+  default     = "0jum8ecs6erd196d"
 }
 
 ############################
@@ -155,7 +155,7 @@ variable "enforce_policies" {
 variable "custom_allowed_locations_definition_id" {
   description = "Optional custom policy definition ID for allowed locations. If empty, no assignment is created here."
   type        = string
-  default     = "/subscriptions/4c13f2a5-9a74-4ad1-b6a6-f99adc18cb3b/providers/Microsoft.Authorization/policyDefinitions/168c51a6652d442f85440758"
+  default     = "/subscriptions/1c95c3eb-55ac-4d47-bee1-e823c941e413/providers/Microsoft.Authorization/policyDefinitions/168c51a6652d442f85440758"
 }
 
 ############################

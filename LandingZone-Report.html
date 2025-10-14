@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Azure Landing Zone Audit Report</title>
+<style>
+  body { font-family:Segoe UI, sans-serif; margin:40px; background:#f4f4f4; }
+  h1 { color:#0078D4; }
+  table { border-collapse: collapse; width:100%; margin-top:20px; }
+  th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+  th { background:#0078D4; color:white; }
+  .ok { background-color:#c8e6c9; }
+  .missing { background-color:#ffcdd2; }
+</style>
+</head>
+<body>
+  <h1>🌐 Azure Landing Zone Readiness Report</h1>
+  <p><strong>Subscription:</strong> 1c95c3eb-55ac-4d47-bee1-e823c941e413</p>
+  <p><strong>Tenant:</strong> ffec9195-19f9-4d30-93a0-48d445d9ed13</p>
+  <p><strong>Date:</strong> 10/14/2025 18:56:39</p>
+
+  <h2>✅ Overall Score: 75 / 125 — ✅ Good</h2>
+
+  <table>
+    <tr>
+      <th>Area</th>
+      <th>Status</th>
+      <th>Points</th>
+      <th>Remediation Tip</th>
+    </tr><tr class='missing'><td>Management Groups</td><td>Missing</td><td>0</td><td>Create a standard MG hierarchy: platform, landingzones, corp.</td></tr>
+<tr class='ok'><td>Resource Groups</td><td>OK</td><td>12.5</td><td>Ensure mgmt, network, security, and workload RGs exist.</td></tr>
+<tr class='ok'><td>Networking (VNets)</td><td>OK</td><td>12.5</td><td>Create hub and spoke VNets.</td></tr>
+<tr class='ok'><td>Monitoring (Log Analytics)</td><td>OK</td><td>12.5</td><td>Deploy a central Log Analytics Workspace.</td></tr>
+<tr class='ok'><td>Key Vault</td><td>OK</td><td>12.5</td><td>Deploy a shared Key Vault for secrets management.</td></tr>
+<tr class='ok'><td>Policy Assignments</td><td>OK</td><td>12.5</td><td>Assign baseline policies (allowed locations, deny public IP, etc.)</td></tr>
+<tr class='missing'><td>Activity Log Diagnostics</td><td>Missing</td><td>0</td><td>Enable diagnostic settings to send activity logs to Log Analytics.</td></tr>
+<tr class='ok'><td>Secure Access (Bastion)</td><td>OK</td><td>12.5</td><td>Deploy Azure Bastion for secure VM access.</td></tr>
+<tr class='missing'><td>Defender for Cloud</td><td>Missing</td><td>0</td><td>Enable Microsoft Defender for Cloud to strengthen security posture.</td></tr>
+<tr class='missing'><td>Policy Compliance</td><td>Missing</td><td>0</td><td>Improve compliance by remediating non-compliant resources.</td></tr>
+  </table>
+
+  <h2>📊 Recommendations</h2>
+  <ul>
+    <li>Review all missing components and deploy them via Terraform or Bicep.</li>
+    <li>Remediate non-compliant resources to improve your compliance score.</li>
+    <li>Enable Defender for Cloud for advanced threat protection.</li>
+    <li>Ensure diagnostic settings and policy baselines are consistently applied.</li>
+  </ul>
+</body>
+</html>

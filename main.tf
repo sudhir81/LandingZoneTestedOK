@@ -181,7 +181,7 @@ resource "azurerm_key_vault" "kv" {
   purge_protection_enabled      = true
   soft_delete_retention_days    = 7
   public_network_access_enabled = true
-  rbac_authorization_enabled = var.kv_rbac_enabled
+  rbac_authorization_enabled    = var.kv_rbac_enabled
 
   tags                          = var.tags
 }
@@ -237,7 +237,7 @@ resource "azapi_resource" "allowed_locations_assignment" {
       policyDefinitionId = var.custom_allowed_locations_definition_id
       enforcementMode    = var.enforce_policies ? "Default" : "DoNotEnforce"
       parameters = {
-        allowedLocations = {
+        listOfAllowedLocations = {  # ✅ FIXED: correct parameter name
           value = var.allowed_locations
         }
       }

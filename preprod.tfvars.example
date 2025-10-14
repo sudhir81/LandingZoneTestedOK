@@ -1,9 +1,12 @@
-subscription_id = "1c95c3eb-55ac-4d47-bee1-e823c941e413"
+# Example pre-production variables
+# Copy this file to preprod.tfvars and update the values for your environment.
+
+subscription_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 location        = "East US"
 
 tags = {
   environment = "preprod"
-  owner       = "appdevop-team"
+  owner       = "appdevops-team"
   workload    = "landing-zone"
   cost_center = "IND-1234"
 }
@@ -18,7 +21,7 @@ rg_names = {
 law_name           = "log-preprod-central"
 law_retention_days = 30
 
-central_storage_account_name = "0jum8ecs6erd196d"
+central_storage_account_name = "mystorageaccount1234"
 
 hub_vnet_name     = "vnet-preprod-hub"
 hub_address_space = ["10.0.0.0/16"]
@@ -38,13 +41,12 @@ preprod_subnets = {
 enable_bastion        = true
 bastion_subnet_prefix = "10.0.2.0/27"
 
-preprod_kv_name = "vascothecoclumbus176538"
+preprod_kv_name = "kv-preprod-shared1234"
 kv_rbac_enabled = true
 
 allowed_locations                      = ["East US", "West US", "Central US"]
 enforce_policies                       = false
 custom_allowed_locations_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c"
-
 
 reader_object_ids      = []
 contributor_object_ids = []
