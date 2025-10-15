@@ -1,0 +1,54 @@
+name: 🧨 Terraform Destroy (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type DESTROY to confirm tearing down the environment"
+        required: true
+        default: "NO"
+      varfile:
+        description: "TF vars file to use"
+        required: true
+        default: "preprod.tfvars"
+
+# Least-privilege defaults
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  # Already set in your repo secrets
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_CLIENT_ID:       ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET:   ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_TENANT_ID:       ${{ secrets.ARM_TENANT_ID }}
+
+jobs:
+  destroy:
+    name: "Terraform Destroy"
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.confirm == 'DESTROY' }}
+
+    steps:
+      - name: 📦 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🧰 Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.7.0
+
+      - name: 🔐 Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: 🌍 terraform init
+        run: terraform init -input=false
+
+      - name: 🔎 Plan Destroy (dry run)
+        run: terraform plan -destroy -input=false -var-file="${{ github.event.inputs.varfile }}"
+
+      - name: 🧨 Destroy
+        run: terraform destroy -auto-approve -input=false -var-file="${{ github.event.inputs.varfile }}"
